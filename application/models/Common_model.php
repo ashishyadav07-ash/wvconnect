@@ -272,7 +272,7 @@ class Common_model extends CI_Model {
 	public function getNomineeToAssign()
 	{
 		
-		$this->db->select("A.awardID,A.awardHeading as category,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.isApprove,N.dateAdded,N.dateModified,N.status");
+		$this->db->select("A.awardID,A.awardHeading as category,N.jury_assignID,N.juryID,N.file,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.isApprove,N.dateAdded,N.dateModified,N.status");
 		$this->db->from("fx_jury_assign_nominee as N");
 		$this->db->join("fx_award AS A",'A.awardID=N.awardCategory','left');
 		$this->db->where('N.juryID',$this->session->userdata('admin_id'));
@@ -280,5 +280,29 @@ class Common_model extends CI_Model {
 		$this->db->order_by('N.jury_assignID ', 'desc');
 		return $this->db->get()->result_array();
         
+	}
+
+	public function sumAllRemark($id){
+		$this->db->select('nomineeID, awardCategory, SUM(remark) as total_remark');
+        $this->db->from('fx_jury_assign_nominee');
+		$this->db->where('nomineeID',$id);
+		// $this->db->group_by(array('nomineeID', 'awardCategory'));
+		return $this->db->get()->row_array();
+	}
+	public function getResult($id){
+		$this->db->select('awardCategory, MAX(totalRemark) AS highest_totalRemark');
+		$this->db->from('fx_jury_assign_nominee');
+		$this->db->where('awardCategory',$id);
+		return $this->db->get()->result_array();
+		
+	}
+	public function getUserResult($awardCategory, $highest_totalRemark){
+		
+		$this->db->select('*');
+		$this->db->from('fx_jury_assign_nominee');
+		$this->db->where('awardCategory',$awardCategory);
+		$this->db->where('totalRemark',$highest_totalRemark);
+		return $this->db->get()->result_array();
+		
 	}
 }

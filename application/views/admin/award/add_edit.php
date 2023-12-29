@@ -32,7 +32,7 @@
                             <div class="form-group col-md-6">
                                     <label for="eventCategory"><span class="text-danger">*</span>Event Category</label>
                                     <select name="eventCategory" class="form-control" id="eventCategory" placeholder="">
-                                    <option value ="">Select Event Category</option>
+                                    <option value ="" selected disabled="disabled" >Select Event Category</option>
                                     <?php
                                     //echo'<pre>';print_r($datas);print_r($Fetch_data);die('sdf');
                                     foreach ($datas as $value => $display_text){
