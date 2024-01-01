@@ -1047,9 +1047,9 @@ function utf8_uri_encode($utf8_string, $length = 0) {
 
 function sendMail($toMailID,$mailContent,$mailSubject){
     // indyverse.in sendgrid api key
-    //$API_KEY = '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';
+    //$API_KEY = 'SG.zsko200RT4Wzt4NcQ7cBDQ.q19xh5wFUF_5BmEUF7FErhb4B4lwtCSRSbiz44532';
    // magnitude digitall sendgrid api key
-    $API_KEY = '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';
+    $API_KEY = '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';
       
     //$FROM_EMAIL = 'no-reply@indyverse.in';
     $FROM_EMAIL = 'partnerships@magnitudedigital.ae';

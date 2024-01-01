@@ -2,20 +2,24 @@
 	exit('No direct script access allowed');
 }
 
-class Common_model extends CI_Model {
+class Common_model extends CI_Model
+{
 
-	public function __construct() {
+	public function __construct()
+	{
 
 		parent::__construct();
 
 	}
 
-	public function delete($table_name, $id) {
+	public function delete($table_name, $id)
+	{
 		$this->db->where($id, $id);
 		$this->db->delete($table_name);
 	}
 
-	public function deleteRows($arr_delete_array, $table_name, $field_name) {
+	public function deleteRows($arr_delete_array, $table_name, $field_name)
+	{
 
 		if (count($arr_delete_array) > 0) {
 
@@ -35,7 +39,8 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function check_old_password() {
+	public function check_old_password()
+	{
 		$this->db->select('userID,password');
 		$this->db->from('fx_site_user');
 		$this->db->where('userID', $this->session->userdata('userID'));
@@ -49,7 +54,8 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function db_update($tablename, $fieldarray, $columnname, $value) {
+	public function db_update($tablename, $fieldarray, $columnname, $value)
+	{
 
 		$this->db->where($columnname, $value);
 
@@ -57,7 +63,8 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function check_login($table, $username, $password) {
+	public function check_login($table, $username, $password)
+	{
 
 		$this->db->select('*');
 
@@ -75,9 +82,10 @@ class Common_model extends CI_Model {
 
 	}
 
-	
 
-	public function insertRecord($tbl_name, $data_array, $insert_id = FALSE) {
+
+	public function insertRecord($tbl_name, $data_array, $insert_id = FALSE)
+	{
 
 		$this->db->cache_delete_all();
 
@@ -97,31 +105,44 @@ class Common_model extends CI_Model {
 
 			/*if($insert_id==true)
 
-				{return $this->db->insert_id();}
+						 {return $this->db->insert_id();}
 
-				else
+						 else
 
-			*/
+					 */
 
-		} else {return false;}
+		} else {
+			return false;
+		}
 
 	}
 
-	public function getRow($tbl_name, $condition = FALSE, $select = FALSE, $order_by = FALSE, $start = FALSE, $limit = FALSE) {
+	public function getRow($tbl_name, $condition = FALSE, $select = FALSE, $order_by = FALSE, $start = FALSE, $limit = FALSE)
+	{
 
 		$this->db->cache_delete_all();
 
-		if ($select != "") {$this->db->select($select, FALSE);}
+		if ($select != "") {
+			$this->db->select($select, FALSE);
+		}
 
-		if (count((array) $condition) > 0 && $condition != "") {$condition = $condition;} else { $condition = array();}
+		if (count((array) $condition) > 0 && $condition != "") {
+			$condition = $condition;
+		} else {
+			$condition = array();
+		}
 
 		if (count((array) $order_by) > 0 && $order_by != "") {
 
-			foreach ($order_by as $key => $val) {$this->db->order_by($key, $val);}
+			foreach ($order_by as $key => $val) {
+				$this->db->order_by($key, $val);
+			}
 
 		}
 
-		if ($limit != "" || $start != "") {$this->db->limit($limit, $start);}
+		if ($limit != "" || $start != "") {
+			$this->db->limit($limit, $start);
+		}
 
 		$rst = $this->db->get_where($tbl_name, $condition);
 
@@ -137,21 +158,32 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function getRows($tbl_name, $condition = FALSE, $select = FALSE, $order_by = FALSE, $start = FALSE, $limit = FALSE) {
+	public function getRows($tbl_name, $condition = FALSE, $select = FALSE, $order_by = FALSE, $start = FALSE, $limit = FALSE)
+	{
 
 		$this->db->cache_delete_all();
 
-		if ($select != "") {$this->db->select($select, FALSE);}
+		if ($select != "") {
+			$this->db->select($select, FALSE);
+		}
 
-		if (count((array) $condition) > 0 && $condition != "") {$condition = $condition;} else { $condition = array();}
+		if (count((array) $condition) > 0 && $condition != "") {
+			$condition = $condition;
+		} else {
+			$condition = array();
+		}
 
 		if (count((array) $order_by) > 0 && $order_by != "") {
 
-			foreach ($order_by as $key => $val) {$this->db->order_by($key, $val);}
+			foreach ($order_by as $key => $val) {
+				$this->db->order_by($key, $val);
+			}
 
 		}
 
-		if ($limit != "" || $start != "") {$this->db->limit($limit, $start);}
+		if ($limit != "" || $start != "") {
+			$this->db->limit($limit, $start);
+		}
 
 		$rst = $this->db->get_where($tbl_name, $condition);
 
@@ -167,7 +199,8 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function mobile_duplication_check($mobile_no) {
+	public function mobile_duplication_check($mobile_no)
+	{
 
 		$this->db->where('userMobile', $mobile_no);
 
@@ -185,7 +218,8 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function email_duplication_check($email) {
+	public function email_duplication_check($email)
+	{
 
 		$this->db->where('userEmail', $email);
 
@@ -203,7 +237,8 @@ class Common_model extends CI_Model {
 
 	}
 
-	public function updateRecord($tbl_name, $data_array, $where_arr) {
+	public function updateRecord($tbl_name, $data_array, $where_arr)
+	{
 		$this->db->cache_delete_all();
 
 		foreach (array_keys($data_array) as $a) {
@@ -217,29 +252,44 @@ class Common_model extends CI_Model {
 
 		$this->db->where($where_arr, NULL, FALSE);
 
-		if ($this->db->update($tbl_name, $data_array)) {return true;} else {return false;}
+		if ($this->db->update($tbl_name, $data_array)) {
+			return true;
+		} else {
+			return false;
+		}
 
 	}
 
-	public function getRecords($tbl_name, $condition = FALSE, $select = FALSE, $order_by = FALSE, $start = FALSE, $limit = FALSE) {
+	public function getRecords($tbl_name, $condition = FALSE, $select = FALSE, $order_by = FALSE, $start = FALSE, $limit = FALSE)
+	{
 
 		$this->db->cache_delete_all();
 
-		if ($select != "") {$this->db->select($select, FALSE);}
+		if ($select != "") {
+			$this->db->select($select, FALSE);
+		}
 
-		if (count($condition) > 0 && $condition != "") {$condition = $condition;} else { $condition = array();}
+		if (count($condition) > 0 && $condition != "") {
+			$condition = $condition;
+		} else {
+			$condition = array();
+		}
 
 		if ($order_by) {
 
 			if (count($order_by) > 0 && $order_by != "") {
 
-				foreach ($order_by as $key => $val) {$this->db->order_by($key, $val);}
+				foreach ($order_by as $key => $val) {
+					$this->db->order_by($key, $val);
+				}
 
 			}
 
 		}
 
-		if ($limit != "" || $start != "") {$this->db->limit($limit, $start);}
+		if ($limit != "" || $start != "") {
+			$this->db->limit($limit, $start);
+		}
 
 		$rst = $this->db->get_where($tbl_name, $condition);
 		// echo $rst;die;
@@ -250,59 +300,70 @@ class Common_model extends CI_Model {
 
 
 
-	 public function getSearchFilterRecords($fromDate,$toDate,$enquiryStatusFilter){
+	public function getSearchFilterRecords($fromDate, $toDate, $enquiryStatusFilter)
+	{
 		$this->db->cache_delete_all();
-        $this->db->select('*');
-        $this->db->from('fx_enquiries');
-        $this->db->where("dateAdded  BETWEEN '".$fromDate." 00:00:00' AND '".$toDate." 23:59:59' AND enquiryStatus='".$enquiryStatusFilter."' AND status= '1'");
-        return $this->db->get()->result_array();
-   	 }
-   	 
-	 public function getAllNominee()
+		$this->db->select('*');
+		$this->db->from('fx_enquiries');
+		$this->db->where("dateAdded  BETWEEN '" . $fromDate . " 00:00:00' AND '" . $toDate . " 23:59:59' AND enquiryStatus='" . $enquiryStatusFilter . "' AND status= '1'");
+		return $this->db->get()->result_array();
+	}
+
+	public function getAllNominee()
 	{
 		$this->db->select("A.awardID,A.awardHeading as category,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.isApprove,N.dateAdded,N.dateModified,N.status");
 		$this->db->from("fx_nominee as N");
-		$this->db->join("fx_award AS A",'A.awardID=N.awardCategory','left');
+		$this->db->join("fx_award AS A", 'A.awardID=N.awardCategory', 'left');
 		$this->db->order_by('N.nomineeID ', 'desc');
-		$this->db->where('N.status',1);
+		$this->db->where('N.status', 1);
 		return $this->db->get()->result_array();
-        
-	}
-	
-	public function getNomineeToAssign()
-	{
-		
-		$this->db->select("A.awardID,A.awardHeading as category,N.jury_assignID,N.juryID,N.file,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.isApprove,N.dateAdded,N.dateModified,N.status");
-		$this->db->from("fx_jury_assign_nominee as N");
-		$this->db->join("fx_award AS A",'A.awardID=N.awardCategory','left');
-		$this->db->where('N.juryID',$this->session->userdata('admin_id'));
-		$this->db->where('N.status',1);
-		$this->db->order_by('N.jury_assignID ', 'desc');
-		return $this->db->get()->result_array();
-        
+
 	}
 
-	public function sumAllRemark($id){
+	public function getNomineeToAssign()
+	{
+
+		$this->db->select("A.awardID,A.awardHeading as category,N.jury_assignID,N.juryID,N.file,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.isApprove,N.dateAdded,N.dateModified,N.status");
+		$this->db->from("fx_jury_assign_nominee as N");
+		$this->db->join("fx_award AS A", 'A.awardID=N.awardCategory', 'left');
+		$this->db->where('N.juryID', $this->session->userdata('admin_id'));
+		$this->db->where('N.status', 1);
+		$this->db->order_by('N.jury_assignID ', 'desc');
+		return $this->db->get()->result_array();
+
+	}
+
+	public function sumAllRemark($id)
+	{
 		$this->db->select('nomineeID, awardCategory, SUM(remark) as total_remark');
-        $this->db->from('fx_jury_assign_nominee');
-		$this->db->where('nomineeID',$id);
+		$this->db->from('fx_jury_assign_nominee');
+		$this->db->where('nomineeID', $id);
 		// $this->db->group_by(array('nomineeID', 'awardCategory'));
 		return $this->db->get()->row_array();
 	}
-	public function getResult($id){
-		$this->db->select('awardCategory, MAX(totalRemark) AS highest_totalRemark');
-		$this->db->from('fx_jury_assign_nominee');
-		$this->db->where('awardCategory',$id);
-		return $this->db->get()->result_array();
-		
-	}
-	public function getUserResult($awardCategory, $highest_totalRemark){
-		
+	public function getResult($id)
+	{
+		// $this->db->select('awardCategory, MAX(totalRemark) AS highest_totalRemark');
+		// $this->db->from('fx_jury_assign_nominee');
+		// $this->db->where('awardCategory',$id);
+		// return $this->db->get()->result_array();
 		$this->db->select('*');
 		$this->db->from('fx_jury_assign_nominee');
-		$this->db->where('awardCategory',$awardCategory);
-		$this->db->where('totalRemark',$highest_totalRemark);
+		$this->db->where('awardCategory', $id);
+		$this->db->join("fx_award", 'awardID=awardCategory', 'left');
+		$this->db->group_by('nomineeID');
+		$this->db->order_by('totalRemark', 'desc');
+		$this->db->limit(3);
 		return $this->db->get()->result_array();
-		
+	}
+	public function getUserResult($awardCategory, $highest_totalRemark)
+	{
+
+		$this->db->select('*');
+		$this->db->from('fx_jury_assign_nominee');
+		$this->db->where('awardCategory', $awardCategory);
+		$this->db->where('totalRemark', $highest_totalRemark);
+		return $this->db->get()->result_array();
+
 	}
 }

@@ -16,27 +16,27 @@ class Jury extends My_Controller
 	}
 	public function datatable_json()
 	{
-	
-			$records['data'] = $this->Common_model->getNomineeToAssign();
-			// echo "<pre>";print_r($this->session->userdata('admin_id'));
-			// echo "<pre>";print_r($records['data']); die();
-			$data = array();
-			$i = 0;
-			foreach ($records['data'] as $row) {
-				$status = ($row['isApprove'] == 1) ? 'checked' : '';
-				$data[] = array(
-					++$i,
-					$row['category'],
-					$row['nomineeName'],
-					$row['nomineeEmail'],
-					$row['nomineeMobile'],
-					'<a title="Edit" class="update btn btn-success-rgba" href="' . base_url('admin/jury/add_edit/' . $row['jury_assignID']) . '"> <i class="feather icon-edit-2"></i></a>'
-				);
-			}
-			$records['data'] = $data;
-			echo json_encode($records);
-		
-		
+
+		$records['data'] = $this->Common_model->getNomineeToAssign();
+		// echo "<pre>";print_r($this->session->userdata('admin_id'));
+		// echo "<pre>";print_r($records['data']); die();
+		$data = array();
+		$i = 0;
+		foreach ($records['data'] as $row) {
+			$status = ($row['isApprove'] == 1) ? 'checked' : '';
+			$data[] = array(
+				++$i,
+				$row['category'],
+				$row['nomineeName'],
+				$row['nomineeEmail'],
+				$row['nomineeMobile'],
+				'<a title="Edit" class="update btn btn-success-rgba" href="' . base_url('admin/jury/add_edit/' . $row['jury_assignID']) . '"> <i class="feather icon-edit-2"></i></a>'
+			);
+		}
+		$records['data'] = $data;
+		echo json_encode($records);
+
+
 	}
 	function change_status()
 	{
@@ -49,9 +49,9 @@ class Jury extends My_Controller
 		$this->load->library('form_validation');
 		$page_data = array();
 		if ($this->input->post('submit')) {
-		
-				$this->form_validation->set_rules('remark', 'nominee remark', 'trim|required');
-		
+
+			$this->form_validation->set_rules('remark', 'nominee remark', 'trim|required');
+
 			if ($this->form_validation->run() == FALSE) {
 				$data = array(
 					'errors' => validation_errors(),
@@ -67,6 +67,7 @@ class Jury extends My_Controller
 				if (isset($_POST) && !empty($_POST)) {
 					$params = array(
 						'remark' => $this->input->post('remark'),
+						'comments' => $this->input->post('comments'),
 						'dateAdded' => date('Y-m-d h:i:s'),
 						'dateModified' => date('Y-m-d h:i:s'),
 					);
@@ -90,7 +91,7 @@ class Jury extends My_Controller
 						$this->session->set_flashdata('success', ' updated successfully!');
 						redirect(base_url('admin/jury'));
 					}
-				} 
+				}
 			}
 		} else {
 			$jury_assignID = $this->uri->segment(4);
@@ -124,5 +125,5 @@ class Jury extends My_Controller
 			return true;
 		}
 	}
-	
+
 }
