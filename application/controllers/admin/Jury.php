@@ -24,13 +24,21 @@ class Jury extends My_Controller
 		$i = 0;
 		foreach ($records['data'] as $row) {
 			$status = ($row['isApprove'] == 1) ? 'checked' : '';
+			if($row['remark'] <= 0){
+			$val = "<span class=status style='padding:10px;color:white;background-color: #d50f0f;'>Pending</span>";
+			$EditBTN ='<a title="Edit" class="update btn btn-success-rgba" href="' . base_url('admin/jury/add_edit/' . $row['jury_assignID']) . '"> <i class="feather icon-edit-2"></i></a>';
+			}else{
+			$val = "<span class=status style='padding:10px;color:white;background-color: #085908;'>Completed</span>";
+			$EditBTN ='';	
+		}
 			$data[] = array(
 				++$i,
 				$row['category'],
 				$row['nomineeName'],
 				$row['nomineeEmail'],
 				$row['nomineeMobile'],
-				'<a title="Edit" class="update btn btn-success-rgba" href="' . base_url('admin/jury/add_edit/' . $row['jury_assignID']) . '"> <i class="feather icon-edit-2"></i></a>'
+				$val,
+				$EditBTN
 			);
 		}
 		$records['data'] = $data;

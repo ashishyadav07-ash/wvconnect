@@ -64,24 +64,26 @@
                             <input type="text" name="regName" class="form-control" id="regName" value="<?php echo set_value("regName"); ?>">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="regEmail"><span class="text-danger">*</span>E-mail</label>
+                            <label for="companyName"><span class="text-danger">*</span>Company Name</label>
+                            <input type="text" name="companyName" class="form-control" id="companyName" placeholder="">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="regEmail"><span class="text-danger">*</span>E-mail</label>
                             <input type="text" name="regEmail" class="form-control" id="regEmail" placeholder="">
                         </div>
-                    </div>
-
-
-
-                    <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="regMobile"><span class="text-danger">*</span>Mobile Number</label>
+                        <label for="regMobile"><span class="text-danger">*</span>Mobile Number</label>
                             <input type="text" name="regMobile" class="form-control" id="regMobile" placeholder="">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="regPassword"><span class="text-danger">*</span>Password</label>
-                            <input type="text" name="regPassword" class="form-control" id="regPassword" placeholder="">
+                            <!-- <label for="regPassword"><span class="text-danger">*</span>Password</label>
+                            <input type="text" name="regPassword" class="form-control" id="regPassword" placeholder=""> -->
                         </div>
                     </div>
-                    <div class="form-row">
+                    <!-- <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="regArea"><span class="text-danger">*</span>Area</label>
                             <input type="text" name="regArea" class="form-control" id="regArea" placeholder="">
@@ -90,14 +92,14 @@
                             <label for="regCity"><span class="text-danger">*</span>City</label>
                             <input type="text" name="regCity" class="form-control" id="regCity" placeholder="">
                         </div>
-                    </div>
-                    <div class="form-row">
+                    </div> -->
+                    <!-- <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="regPincode"><span class="text-danger">*</span>Pincode</label>
                             <input type="text" name="regPincode" class="form-control" id="regPincode" placeholder="">
                         </div>
 
-                    </div>
+                    </div> -->
                     <input type="submit" name="submit" value="Add" class="btn btn-primary-rgba font-16">
                     <?php echo form_close(); ?>
                 </div>

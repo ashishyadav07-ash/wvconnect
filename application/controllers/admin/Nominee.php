@@ -25,14 +25,19 @@ class Nominee extends My_Controller
 			// echo "<pre>";print_r($records['data']); die();
 			$data = array();
 		$i = 0;
+		
 		foreach ($records['data'] as $row) {
 			$status = ($row['isApprove'] == 1) ? 'checked' : '';
+	
+			
+
 			$data[] = array(
 				++$i,
 				$row['category'],
 				$row['nomineeName'],
 				$row['nomineeEmail'],
 				$row['nomineeMobile'],
+				
 				// '<div class="custom-control custom-switch">
 				// <input type="checkbox" class="tgl_checkbox custom-control-input" id="cb_' . $row['nomineeID'] . '"
 				// data-id="' . $row['nomineeID'] . '"
@@ -53,12 +58,26 @@ class Nominee extends My_Controller
 		$i = 0;
 		foreach ($records['data'] as $row) {
 			$status = ($row['isApprove'] == 1) ? 'checked' : '';
+			// echo"<pre>";print_r($row); die();
+			$idExists = $this->db->where('nomineeID', $row['nomineeID'])->from('fx_jury_assign_nominee')->count_all_results() > 0;
+
+
+			if($idExists <= 0){
+				$val = "<span class=status style='padding:10px;color:white;background-color: #d50f0f;'>Pending</span>";
+				// $EditBTN ='<a title="Edit" class="update btn btn-success-rgba" href="' . base_url('admin/jury/add_edit/' . $row['jury_assignID']) . '"> <i class="feather icon-edit-2"></i></a>';
+				}else{
+				$val = "<span class=status style='padding:10px;color:white;background-color: #085908;'>Assigned</span>";
+				// $EditBTN ='';	
+			}
+
+
 			$data[] = array(
 				++$i,
 				$row['category'],
 				$row['nomineeName'],
 				$row['nomineeEmail'],
 				$row['nomineeMobile'],
+				$val,
 				// '<div class="custom-control custom-switch">
 				// <input type="checkbox" class="tgl_checkbox custom-control-input" id="cb_' . $row['nomineeID'] . '"
 				// data-id="' . $row['nomineeID'] . '"

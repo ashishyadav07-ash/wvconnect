@@ -323,7 +323,7 @@ class Common_model extends CI_Model
 	public function getNomineeToAssign()
 	{
 
-		$this->db->select("A.awardID,A.awardHeading as category,N.jury_assignID,N.juryID,N.file,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.isApprove,N.dateAdded,N.dateModified,N.status");
+		$this->db->select("A.awardID,A.awardHeading as category,N.jury_assignID,N.juryID,N.file,N.nomineeID,N.awardCategory,N.nomineeName,N.nomineeEmail,N.nomineeMobile,N.remark,N.isApprove,N.dateAdded,N.dateModified,N.status");
 		$this->db->from("fx_jury_assign_nominee as N");
 		$this->db->join("fx_award AS A", 'A.awardID=N.awardCategory', 'left');
 		$this->db->where('N.juryID', $this->session->userdata('admin_id'));

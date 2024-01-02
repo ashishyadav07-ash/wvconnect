@@ -82,7 +82,7 @@
                                 <th>Nominee Mobile</th>
 
                                 <!-- <th>Is Approve</th> -->
-                    
+                                <th>Status</th>
                                 <th width="100">Action</th>
 
                             </tr>
@@ -152,10 +152,11 @@
     { "targets": 3, "name": "awardImage", 'searchable':true, 'orderable':true,'width':'100px'},
 
     { "targets": 4, "name": "awardImage", 'searchable':true, 'orderable':true,'width':'100px'},
+    { "targets": 5, "name": "Status", 'searchable':true, 'orderable':true,'width':'100px'},
 
     // { "targets": 5, "name": "awardImage", 'searchable':true, 'orderable':true,'width':'100px'},
 
-    { "targets": 5, "name": "Action", 'searchable':false, 'orderable':false,'width':'100px' }
+    { "targets": 6, "name": "Action", 'searchable':false, 'orderable':false,'width':'100px' }
 
     ]
 

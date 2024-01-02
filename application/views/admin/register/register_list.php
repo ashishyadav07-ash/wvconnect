@@ -91,13 +91,14 @@
 
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>Company Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
-                                    <th>Area</th>
+                                    <!-- <th>Area</th>
                                     <th>City</th>
-                                    <th>Pincode</th>
+                                    <th>Pincode</th> -->
                                     <th>Date</th>
-                                    <th>Action</th>
+                                    <!-- <th>Action</th> -->
 
 
                                 </tr>
@@ -174,11 +175,18 @@
                     "name": "regName",
                     'searchable': true,
                     'orderable': true,
-                    'width': '100px'
+                    'width': '150px'
+                },
+                {
+                    "targets": 2,
+                    "name": "companyName",
+                    'searchable': true,
+                    'orderable': true,
+                    'width': '150px'
                 },
 
                 {
-                    "targets": 2,
+                    "targets": 3,
                     "name": "regEmail",
                     'searchable': true,
                     'orderable': true,
@@ -186,52 +194,52 @@
                 },
 
                 {
-                    "targets": 3,
+                    "targets": 4,
                     "name": "regMobile",
                     'searchable': true,
                     'orderable': true,
                     'width': '100px'
                 },
 
-                {
-                    "targets": 4,
-                    "name": "regArea",
-                    'searchable': true,
-                    'orderable': true,
-                    'width': '100px'
-                },
+                // {
+                //     "targets": 4,
+                //     "name": "regArea",
+                //     'searchable': true,
+                //     'orderable': true,
+                //     'width': '100px'
+                // },
+
+                // {
+                //     "targets": 5,
+                //     "name": "regCity",
+                //     'searchable': true,
+                //     'orderable': true,
+                //     'width': '100px'
+                // },
+
+                // {
+                //     "targets": 6,
+                //     "name": "regPincode",
+                //     'searchable': true,
+                //     'orderable': true,
+                //     'width': '100px'
+                // },
 
                 {
                     "targets": 5,
-                    "name": "regCity",
-                    'searchable': true,
-                    'orderable': true,
-                    'width': '100px'
-                },
-
-                {
-                    "targets": 6,
-                    "name": "regPincode",
-                    'searchable': true,
-                    'orderable': true,
-                    'width': '100px'
-                },
-
-                {
-                    "targets": 7,
                     "name": "dateAdded",
                     'searchable': true,
                     'orderable': true,
                     'width': '100px'
                 },
 
-                {
-                    "targets": 8,
-                    "name": "Action",
-                    'searchable': false,
-                    'orderable': false,
-                    'width': '100px'
-                }
+                // {
+                //     "targets": 8,
+                //     "name": "Action",
+                //     'searchable': false,
+                //     'orderable': false,
+                //     'width': '100px'
+                // }
 
 
             ]

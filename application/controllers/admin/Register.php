@@ -46,13 +46,14 @@ class Register extends My_Controller {
 				// $row['fullname'] = $row['register_formFname'] . ' ' . $row['register_formLname'],
 
 				$row['regName'],
+				$row['companyName'],
 				$row['regEmail'],
 				$row['regMobile'],
-				$row['regArea'],
-				$row['regCity'],
-				$row['regPincode'],
+				// $row['regArea'],
+				// $row['regCity'],
+				// $row['regPincode'],
 				date('Y-m-d', strtotime($row['dateAdded'])),
-				'<a title="Delete" class="delete btn btn-danger-rgba" href='.base_url("admin/register/register_delete/".$row['regID']).' title="Delete" onclick="return confirm(\'Do you want to delete ?\')"> <i class="feather icon-trash"></i></a>'
+				// '<a title="Delete" class="delete btn btn-danger-rgba" href='.base_url("admin/register/register_delete/".$row['regID']).' title="Delete" onclick="return confirm(\'Do you want to delete ?\')"> <i class="feather icon-trash"></i></a>'
 
 			);
 
@@ -71,10 +72,10 @@ class Register extends My_Controller {
 			$this->form_validation->set_rules('regName', 'name', 'trim|required');
 			$this->form_validation->set_rules('regEmail', 'email', 'trim|required');
 			$this->form_validation->set_rules('regMobile', 'mobile number', 'trim|required');
-			$this->form_validation->set_rules('regPassword', 'password', 'trim|required');
-			$this->form_validation->set_rules('regArea', 'area', 'trim|required');
-			$this->form_validation->set_rules('regCity', 'city', 'trim|required');
-			$this->form_validation->set_rules('regPincode', 'pincode', 'trim|required');
+			$this->form_validation->set_rules('companyName', 'company name', 'trim|required');
+			// $this->form_validation->set_rules('regArea', 'area', 'trim|required');
+			// $this->form_validation->set_rules('regCity', 'city', 'trim|required');
+			// $this->form_validation->set_rules('regPincode', 'pincode', 'trim|required');
 
 			if ($this->form_validation->run() == FALSE) {
 				$data = array(
@@ -89,11 +90,12 @@ class Register extends My_Controller {
 					'regName' => $this->input->post('regName'),
 					'regEmail' => $this->input->post('regEmail'),
 					'regMobile' => $this->input->post('regMobile'),
-					'regPassword' => $this->input->post('regPassword'),
-					'regArea' => $this->input->post('regArea'),
-					'regCity' => $this->input->post('regCity'),
-					'regPincode' => $this->input->post('regPincode'),
+					'companyName' => $this->input->post('companyName'),
+					// 'regArea' => $this->input->post('regArea'),
+					// 'regCity' => $this->input->post('regCity'),
+					// 'regPincode' => $this->input->post('regPincode'),
 					'dateAdded' => date('Y-m-d h:i:s'),
+					'dateModified' => date('Y-m-d h:i:s'),
 				);
 
 				$params = $this->security->xss_clean($data);

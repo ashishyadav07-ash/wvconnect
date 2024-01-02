@@ -32,6 +32,7 @@
                                 <th>Nominee Name</th>
                                 <th>Nominee Email</th>
                                 <th>Nominee Mobile</th>
+                                <th>Status</th>
                                 <th width="100">Action</th>
                             </tr>
                             </thead>
@@ -62,7 +63,8 @@
     { "targets": 2, "name": "awardImage", 'searchable':true, 'orderable':true,'width':'100px'},
     { "targets": 3, "name": "awardImage", 'searchable':true, 'orderable':true,'width':'100px'},
     { "targets": 4, "name": "awardImage", 'searchable':true, 'orderable':true,'width':'100px'},
-    { "targets": 5, "name": "Action", 'searchable':false, 'orderable':false,'width':'100px' }
+    { "targets": 5, "name": "status", 'searchable':true, 'orderable':true,'width':'100px'},
+    { "targets": 6, "name": "Action", 'searchable':false, 'orderable':false,'width':'100px' }
     ]
   });
 </script>
