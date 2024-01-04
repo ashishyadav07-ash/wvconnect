@@ -46,7 +46,7 @@
                                 //echo'<pre>';print_r($datas);print_r($Fetch_data);die('sdf');
                                 foreach ($datas as $value => $display_text) {
                                     ?>
-                                    <option value="<?php echo $display_text['awardID']; ?>" <?php echo (isset($Fetch_data['awardCategory']) && $Fetch_data['awardCategory'] != '' && ($display_text['awardID'] == $Fetch_data['awardCategory'])) ? "selected" : ''; ?>>
+                                    <option value="<?php echo $display_text['awardID']; ?>" <?php echo (isset($Fetch_data['category']) && $Fetch_data['category'] != '' && ($display_text['awardID'] == $Fetch_data['category'])) ? "selected" : ''; ?>>
                                         <?php echo $display_text['awardHeading']; ?>
                                     </option>
                                 <?php }
@@ -94,31 +94,31 @@
 
                     <div class="form-row">
                         <?php
-                        if (!empty($Fetch_data['file'])) {
-                            $file_info = pathinfo($Fetch_data['file']);
+                        if (!empty($Fetch_data['other_file'])) {
+                            $file_info = pathinfo($Fetch_data['other_file']);
                             $file_extension = $file_info['extension'];
                             // echo"<pre>";print_r($file_extension);
                             ?>
                             <div class="form-group col-md-6">
                                 <label for="nomineeMobile"><span class="text-danger">*</span> Nominee Attachment</label><br>
                                 <input type="hidden" autocomplete="off" name="file" class="form-control" id=""
-                                    value="<?php echo $Fetch_data['file'] ?>" placeholder="">
+                                    value="<?php echo $Fetch_data['other_file'] ?>" placeholder="">
                                 <?php if ($file_extension == 'mp4') { ?>
                                     <video width="600" height="400" controls>
-                                        <source src="<?php echo base_url('uploads/file/' . $Fetch_data['file']); ?>"
+                                        <source src="<?php echo base_url('uploads/file/' . $Fetch_data['other_file']); ?>"
                                             type="video/mp4">
                                     </video>
                                 <?php } else if ($file_extension == 'jpeg' || $file_extension == 'jpg' || $file_extension == 'png') { ?>
                                         <img width="600" height="400"
-                                            src="<?php echo base_url('uploads/file/' . $Fetch_data['file']); ?>" alt="Image">
+                                            src="<?php echo base_url('uploads/file/' . $Fetch_data['other_file']); ?>" alt="Image">
                                 <?php } else if ($file_extension == 'pdf') { ?>
 
-                                            <iframe src="<?php echo base_url('uploads/file/' . $Fetch_data['file']); ?>" width="600"
+                                            <iframe src="<?php echo base_url('uploads/file/' . $Fetch_data['other_file']); ?>" width="600"
                                                 height="400"></iframe>
                                 <?php } else if ($file_extension == 'mp3') { ?>
 
                                                 <audio controls>
-                                                    <source src="<?php echo base_url('uploads/file/' . $Fetch_data['file']); ?>"
+                                                    <source src="<?php echo base_url('uploads/file/' . $Fetch_data['other_file']); ?>"
                                                         type="audio/mpeg">
                                                 </audio>
                                 <?php } ?>

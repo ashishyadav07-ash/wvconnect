@@ -46,12 +46,10 @@ class Result extends My_Controller
 		$html = '<table cellspacing="1" cellpadding="7" border="1">
 			<thead>
 				<tr>
-					<th>jury_assignID</th>
 					<th>nomineeID</th>
 					<th>awardCategory</th>
 					<th>nomineeName</th>
 					<th>nomineeEmail</th>
-					<th>remark</th>
 					<th>totalRemark</th>
 				</tr>
 			</thead>
@@ -59,12 +57,10 @@ class Result extends My_Controller
 
 		foreach ($awardRecord as $val) {
 			$html .= '<tr>
-				<td>' . $val['jury_assignID'] . '</td>
 				<td>' . $val['nomineeID'] . '</td>
 				<td>' . $val['awardHeading'] . '</td>
-				<td>' . $val['nomineeName'] . '</td>
-				<td>' . $val['nomineeEmail'] . '</td>
-				<td>' . $val['remark'] . '</td>
+				<td>' . $val['client_name'] . '</td>
+				<td>' . $val['client_email'] . '</td>
 				<td>' . $val['totalRemark'] . '</td>
 			</tr>';
 		}

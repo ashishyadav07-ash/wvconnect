@@ -33,10 +33,10 @@ class Jury extends My_Controller
 		}
 			$data[] = array(
 				++$i,
-				$row['category'],
-				$row['nomineeName'],
-				$row['nomineeEmail'],
-				$row['nomineeMobile'],
+				$row['awardHeading'],
+				$row['client_name'],
+				$row['client_email'],
+				$row['client_whatsapp_number'],
 				$val,
 				$EditBTN
 			);

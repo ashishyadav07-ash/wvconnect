@@ -151,7 +151,7 @@ class Register extends My_Controller {
 
 			$new_ToDate = date('Y-m-d', strtotime($ToDate));
 			
-			$this->db->select("regID,regName,regEmail,regMobile,regArea,regCity,regPincode,dateAdded");
+			$this->db->select("regID,regName,companyName,regEmail,regMobile,regArea,regCity,regPincode,dateAdded");
 
 			$this->db->from("fx_register");
 
@@ -176,10 +176,6 @@ class Register extends My_Controller {
 							<th>Name</th>
 							<th>Email</th>
 							<th>Mobile</th>
-							<th>Password</th>
-							<th>Area</th>
-							<th>City</th>
-							<th>Pincode</th>
 							<th>Date</th>
                         </tr>
                     </thead>
@@ -191,10 +187,6 @@ class Register extends My_Controller {
         				<td>' . $value['regName'] . '</td>
         				<td>' . $value['regEmail'] . '</td>
         				<td>' . $value['regMobile'] . '</td>
-						<td>' . $value['regPassword'] . '</td>
-        				<td>' . $value['regArea'] . '</td>
-        				<td>' . $value['regCity'] . '</td>
-						<td>' . $value['regPincode'] . '</td>
         				<td>' . $value['dateAdded'] . '</td>
 
                        </tr>
@@ -226,12 +218,9 @@ class Register extends My_Controller {
                         <tr>
 							<th>Id</th>
 							<th>Name</th>
+							<th>Company Name</th>
 							<th>Email</th>
 							<th>Mobile</th>
-							<th>Password</th>
-							<th>Area</th>
-							<th>City</th>
-							<th>Pincode</th>
 							<th>Date</th>
                         </tr>
                     </thead>
@@ -241,12 +230,9 @@ class Register extends My_Controller {
 				$html .= '<tr>
 				        <td>' . $value['regID'] . '</td>
         				<td>' . $value['regName'] . '</td>
+						<td>' . $value['companyName'] . '</td>
         				<td>' . $value['regEmail'] . '</td>
         				<td>' . $value['regMobile'] . '</td>
-						<td>' . $value['regPassword'] . '</td>
-        				<td>' . $value['regArea'] . '</td>
-        				<td>' . $value['regCity'] . '</td>
-						<td>' . $value['regPincode'] . '</td>
         				<td>' . $value['dateAdded'] . '</td>
 
                        </tr>

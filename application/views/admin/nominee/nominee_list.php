@@ -26,15 +26,15 @@
 
         </div>
 
-        <!-- <div class="col-md-4 col-lg-4">
+        <div class="col-md-4 col-lg-4">
 
             <div class="widgetbar">
 
-                <a href="< ?= base_url('admin/nominee/add_edit'); ?>"><button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add New Nominee</button></a>
+                <a href="<?= base_url('admin/nominee/add_edit'); ?>"><button class="btn btn-primary-rgba"><i class="feather icon-plus mr-2"></i>Add New Nominee</button></a>
 
             </div>                        
 
-        </div> -->
+        </div>
 
         
 

@@ -54,11 +54,12 @@ class Nominee extends My_Controller
 		}else{
 
 		$records['data'] = $this->Common_model->getAllNominee();
+		// echo"<pre>";print_r($records['data']); die();
 		$data = array();
 		$i = 0;
 		foreach ($records['data'] as $row) {
-			$status = ($row['isApprove'] == 1) ? 'checked' : '';
-			// echo"<pre>";print_r($row); die();
+			$status = ($row['status'] == 1) ? 'checked' : '';
+	
 			$idExists = $this->db->where('nomineeID', $row['nomineeID'])->from('fx_jury_assign_nominee')->count_all_results() > 0;
 
 
@@ -73,10 +74,10 @@ class Nominee extends My_Controller
 
 			$data[] = array(
 				++$i,
-				$row['category'],
-				$row['nomineeName'],
-				$row['nomineeEmail'],
-				$row['nomineeMobile'],
+				$row['awardHeading'],
+				$row['client_name'],
+				$row['client_email'],
+				$row['client_whatsapp_number'],
 				$val,
 				// '<div class="custom-control custom-switch">
 				// <input type="checkbox" class="tgl_checkbox custom-control-input" id="cb_' . $row['nomineeID'] . '"
@@ -105,30 +106,32 @@ class Nominee extends My_Controller
 		$this->load->library('form_validation');
 		$page_data = array();
 		if ($this->input->post('submit')) {
-			$this->form_validation->set_rules('awardCategory', 'select award category', 'trim|required');
-			$this->form_validation->set_rules('nomineeName', 'nominee name', 'trim|required');
-			$this->form_validation->set_rules('nomineeEmail', 'nominee email', 'trim|required');
-			$this->form_validation->set_rules('nomineeMobile', 'nominee mobile', 'trim|required');
+			
+			// $this->form_validation->set_rules('awardCategory', 'select award category', 'trim|required');
+			// $this->form_validation->set_rules('nomineeName', 'nominee name', 'trim|required');
+			// $this->form_validation->set_rules('nomineeEmail', 'nominee email', 'trim|required');
+			// $this->form_validation->set_rules('nomineeMobile', 'nominee mobile', 'trim|required');
 			if ($this->session->userdata('admin_role_id') == '3') {
-				$this->form_validation->set_rules('remark', 'nominee remark', 'trim|required');
+				// $this->form_validation->set_rules('remark', 'nominee remark', 'trim|required');
 			} else {
 				// $this->form_validation->set_rules('juryID','Jury ID','trim|required');
 			}
 
 
-			if ($this->form_validation->run() == FALSE) {
-				$data = array(
-					'errors' => validation_errors(),
-				);
-				$this->session->set_flashdata('errors', $data['errors']);
-				$nomineeID = $_POST['nomineeID'];
-				if ($_POST['nomineeID'] > 0) {
-					redirect(base_url('admin/nominee/add_edit/' . $nomineeID . ''), 'refresh');
-				} else {
-					redirect(base_url('admin/nominee/add_edit'), 'refresh');
-				}
-			} else {
+			// if ($this->form_validation->run() == FALSE) {
+			// 	$data = array(
+			// 		'errors' => validation_errors(),
+			// 	);
+			// 	$this->session->set_flashdata('errors', $data['errors']);
+			// 	$nomineeID = $_POST['nomineeID'];
+			// 	if ($_POST['nomineeID'] > 0) {
+			// 		redirect(base_url('admin/nominee/add_edit/' . $nomineeID . ''), 'refresh');
+			// 	} else {
+			// 		redirect(base_url('admin/nominee/add_edit'), 'refresh');
+			// 	}
+			// } else {
 				if (isset($_POST) && !empty($_POST)) {
+					// echo"<pre>";print_r("fgf"); die();
 					// $config = array(
 					// 	'upload_path' => 'uploads/nominee/',
 					// 	'allowed_types' => 'jpg|jpeg|gif|png',
@@ -174,8 +177,8 @@ class Nominee extends My_Controller
 					$nomineeID = $_POST['nomineeID'];
 					$data = $this->security->xss_clean($params);
 					if ($_POST['nomineeID'] > 0) {
-						$where = ['nomineeID' => $nomineeID];
-						$params = $this->Common_model->updateRecord('fx_nominee', $data, $where);
+						// $where = ['nomineeID' => $nomineeID];
+						// $params = $this->Common_model->updateRecord('fx_nominee', $data, $where);
 
 
 						if ($this->session->userdata('admin_role_id') != '3') {
@@ -195,13 +198,45 @@ class Nominee extends My_Controller
 
 											foreach ($this->input->post('juryID') as $juryID) {
 												$params = array(
-													'awardCategory' => $this->input->post('awardCategory'),
-													'nomineeName' => $this->input->post('nomineeName'),
-													'nomineeEmail' => $this->input->post('nomineeEmail'),
-													'nomineeMobile' => $this->input->post('nomineeMobile'),
+													// 'awardCategory' => $this->input->post('awardCategory'),
+													// 'nomineeName' => $this->input->post('nomineeName'),
+													// 'nomineeEmail' => $this->input->post('nomineeEmail'),
+													// 'nomineeMobile' => $this->input->post('nomineeMobile'),
 													'nomineeID' => $nomineeID,
 													'juryID' => $juryID,
-													'file' => $this->input->post('file'),
+
+													'organisation_name' => $this->input->post('organisation_name'),
+													'name_spoc' => $this->input->post('name_spoc'),
+													'number_spoc' => $this->input->post('number_spoc'),
+													'email_spoc' => $this->input->post('email_spoc'),
+
+													'company_address' => $this->input->post('company_address'),
+													'linkdin_profile' => $this->input->post('linkdin_profile'),
+													'facebook_profile' => $this->input->post('facebook_profile'),
+													'instagram_profile' => $this->input->post('instagram_profile'),
+													'youtube_channel' => $this->input->post('youtube_channel'),
+													'website_link' => $this->input->post('website_link'),
+													'outside_india' => $this->input->post('outside_india'),
+													'international_spoc_name' => $this->input->post('international_spoc_name'),
+													'international_spoc_number' => $this->input->post('international_spoc_number'),
+													'international_spoc_email' => $this->input->post('international_spoc_email'),
+													'category' => $this->input->post('category'),
+													'project' => $this->input->post('project'),
+													'project_start_date' => $this->input->post('project_start_date'),
+													'project_end_date' => $this->input->post('project_end_date'),
+													'location' => $this->input->post('location'),
+													'objective' => $this->input->post('objective'),
+													'concept_activity' => $this->input->post('concept_activity'),
+													'amplification_scale' => $this->input->post('amplification_scale'),
+													'result' => $this->input->post('result'),
+													'client_name' => $this->input->post('client_name'),
+													'client_email' => $this->input->post('client_email'),
+													'client_whatsapp_number' => $this->input->post('client_whatsapp_number'),
+													'client_sms_number' => $this->input->post('client_sms_number'),
+													'video_file' => $this->input->post('video_file'),
+													'pdf_file' => $this->input->post('pdf_file'),
+													'other_file' => $this->input->post('other_file'),
+
 													'dateAdded' => date('Y-m-d h:i:s'),
 													'dateModified' => date('Y-m-d h:i:s'),
 												);
@@ -220,35 +255,79 @@ class Nominee extends My_Controller
 								// 	}
 								// }
 
-								// echo "<pre>";
-								// print_r('12345');
-								// exit;
+								
 
 
 
 							}
 							}
-						}
+							if ($params) {
+								$this->session->set_flashdata('success', ' updated successfully!');
+								redirect(base_url('admin/nominee'));
+							}
+						}else{
+							$prefix = 'WV-';
+    						$randomNumber = mt_rand(10000, 99999);
+							
+							$params = array(
+								'generated_id' => $prefix.$randomNumber,
+								'organisation_name' => $this->input->post('organisation_name'),
+								'name_spoc' => $this->input->post('name_spoc'),
+								'number_spoc' => $this->input->post('number_spoc'),
+								'email_spoc' => $this->input->post('email_spoc'),
 
-
-
-
-						if ($params) {
-							$this->session->set_flashdata('success', ' updated successfully!');
+								'company_address' => $this->input->post('company_address'),
+								'linkdin_profile' => $this->input->post('linkdin_profile'),
+								'facebook_profile' => $this->input->post('facebook_profile'),
+								'instagram_profile' => $this->input->post('instagram_profile'),
+								'youtube_channel' => $this->input->post('youtube_channel'),
+								'website_link' => $this->input->post('website_link'),
+								'outside_india' => $this->input->post('outside_india'),
+								'international_spoc_name' => $this->input->post('international_spoc_name'),
+								'international_spoc_number' => $this->input->post('international_spoc_number'),
+								'international_spoc_email' => $this->input->post('international_spoc_email'),
+								'category' => $this->input->post('category'),
+								'project' => $this->input->post('project'),
+								'project_start_date' => $this->input->post('project_start_date'),
+								'project_end_date' => $this->input->post('project_end_date'),
+								'location' => $this->input->post('location'),
+								'objective' => $this->input->post('objective'),
+								'concept_activity' => $this->input->post('concept_activity'),
+								'amplification_scale' => $this->input->post('amplification_scale'),
+								'result' => $this->input->post('result'),
+								'client_name' => $this->input->post('client_name'),
+								'client_email' => $this->input->post('client_email'),
+								'client_whatsapp_number' => $this->input->post('client_whatsapp_number'),
+								'client_sms_number' => $this->input->post('client_sms_number'),
+								'video_file' => $this->input->post('video_file'),
+								'pdf_file' => $this->input->post('pdf_file'),
+								'other_file' => $this->input->post('other_file'),
+								'date_added' => date('Y-m-d h:i:s'),
+								'date_modified' => date('Y-m-d h:i:s'),
+							);
+							$data = $this->security->xss_clean($params);
+							$insert = $this->Common_model->insertRecord('fx_nominee', $data);
+							$this->session->set_flashdata('success', 'added successfully!');
 							redirect(base_url('admin/nominee'));
+						
 						}
-					} else {
-						$insert = $this->Common_model->insertRecord('fx_nominee', $data);
-						if ($insert) {
-							$this->session->set_flashdata('success', 'Blog added successfully!');
-							redirect(base_url('admin/nominee'));
-						}
-					}
+
+
+
+
+						
+					} 
+					// else {
+						
+					// 		$this->session->set_flashdata('success', 'added successfully!');
+					// 		redirect(base_url('admin/nominee'));
+						
+					// }
 				// } else {
 				// 	$this->session->set_flashdata('errors', 'Something is Wrong!!');
 				// 	redirect(base_url('admin/nominee/add_edit'), 'refresh');
 				// }
-			}
+			// }
 		} else {
 			$nomineeID = $this->uri->segment(4);
 			if ($nomineeID > 0) {
@@ -270,7 +349,7 @@ class Nominee extends My_Controller
 	function nominee_view($id = 0)
 	{
 		// $page_data['nominee_tags'] = $this->Common_model->getRecords('fx_nominee_tag', array( 'nomineeID' => $id ),'tagName' );
-		$page_data['Fetch_data'] = $this->Common_model->getRow('fx_nominee', array('nomineeID' => $nomineeID));
+		$page_data['Fetch_data'] = $this->Common_model->getRow('fx_nominee', array('nomineeID' => $id));
 		// print_r($page_data);die();
 		$this->load->view('admin/includes/_header');
 		$this->load->view('admin/nominee/add_edit', $page_data);

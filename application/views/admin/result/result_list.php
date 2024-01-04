@@ -75,13 +75,13 @@
                             <?php echo $val['nomineeID']; ?>
                         </p>
                         <p><strong>Name:</strong>
-                            <?php echo $val['nomineeName']; ?>
+                            <?php echo $val['client_name']; ?>
                         </p>
                         <p><strong>Email:</strong>
-                            <?php echo $val['nomineeEmail']; ?>
+                            <?php echo $val['client_email']; ?>
                         </p>
                         <p><strong>Mobile:</strong>
-                            <?php echo $val['nomineeMobile']; ?>
+                            <?php echo $val['client_whatsapp_number']; ?>
                         </p>
                         <p><strong>Total Remark:</strong>
                             <?php echo $val['totalRemark']; ?>

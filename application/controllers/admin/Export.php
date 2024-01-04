@@ -56,13 +56,13 @@ class Export extends My_Controller
 		<tbody>';
 
 			foreach ($juryRecord as $val) {
-				$awardCategory = $this->Common_model->getRow('fx_award', array('awardID' => $val['awardCategory']));
+				$awardCategory = $this->Common_model->getRow('fx_award', array('awardID' => $val['category']));
 				$html .= '<tr>
 			<td>' . $val['jury_assignID'] . '</td>
 			<td>' . $val['nomineeID'] . '</td>
 			<td>' . $awardCategory['awardHeading'] . '</td>
-			<td>' . $val['nomineeName'] . '</td>
-			<td>' . $val['nomineeEmail'] . '</td>
+			<td>' . $val['client_name'] . '</td>
+			<td>' . $val['client_email'] . '</td>
 			<td>' . $val['remark'] . '</td>
 			<td>' . $val['totalRemark'] . '</td>
 		</tr>';
